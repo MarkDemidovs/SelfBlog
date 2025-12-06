@@ -23,6 +23,9 @@ export default function App() {
    {article.content}</>)
   }
   return (
+    <>
+    <a href="https://markdemidovs.github.io/PersonalWebsite/"><button>i'll go back now</button></a>
+    <p><small>*tip: click any of the titles to open the content of the article.</small></p>
     <div>
       {articles.length === 0 ? (
         <p>No articles found.</p>
@@ -30,7 +33,7 @@ export default function App() {
         <ul>
           {articles.map((article, index) => (
             <li key={index}>
-              <h2 onClick={() => {
+              <h2 className="clickableTitle" onClick={() => {
                 handleContentClick(article);
                 setSelectedArticle(article);
               }}>{article.title}</h2>
@@ -40,5 +43,6 @@ export default function App() {
         </ul>
       )}
     </div>
+    </>
   );
 }
