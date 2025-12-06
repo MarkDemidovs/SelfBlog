@@ -28,7 +28,7 @@ export default function App() {
     <p><small>*tip: click any of the titles to open the content of the article.</small></p>
     <div>
       {articles.length === 0 ? (
-        <p>No articles found.</p>
+        <p>Loading..</p>
       ) : (
         <ul>
           {articles.map((article, index) => (

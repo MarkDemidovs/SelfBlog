@@ -5,7 +5,8 @@ const getAllArticles = async (req, res) => {
         const blogs = await blogModel.fetchAllArticles();
         res.json({ blogs });
     } catch (err){
-        res.status(500).json({ error: "Failed to fetch articles" });
+        console.error('Error fetching articles:', err.message);
+        res.status(500).json({ error: "Failed to fetch articles", details: err.message });
     }
 }
 const createArticle = async (req, res) => {
@@ -16,7 +17,8 @@ const createArticle = async (req, res) => {
         const newArticle = await blogModel.addArticle({ title, content });
         res.status(201).json({ article: newArticle });    
     } catch (err) {
-        res.status(500).json({ error: "Failed to create article! check asynchronous function createArticle::blogController.js !" });
+        console.error('Error creating article:', err.message);
+        res.status(500).json({ error: "Failed to create article", details: err.message });
     }
 }
 
@@ -27,7 +29,8 @@ const deleteArticle = async (req, res) => {
         const deletedArticle = await blogModel.removeArticle(id);
         res.status(200).json({ message: deletedArticle });
     } catch (err) {
-        res.status(500).json({ error: "Failed to delete article" + err.message});
+        console.error('Error deleting article:', err.message);
+        res.status(500).json({ error: "Failed to delete article", details: err.message});
     }
 }
 module.exports = {
