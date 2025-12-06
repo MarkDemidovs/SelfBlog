@@ -3,6 +3,7 @@ import API from "./api/axiosConfig";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -17,6 +18,10 @@ export default function App() {
     fetchArticles();
   }, []);
 
+  const handleContentClick = (article) => {
+   return (<>
+   {article.content}</>)
+  }
   return (
     <div>
       {articles.length === 0 ? (
@@ -25,8 +30,11 @@ export default function App() {
         <ul>
           {articles.map((article, index) => (
             <li key={index}>
-              <h2>{article.title}</h2>
-              <p>{article.content}</p>
+              <h2 onClick={() => {
+                handleContentClick(article);
+                setSelectedArticle(article);
+              }}>{article.title}</h2>
+              {selectedArticle === article && <p>{article.content}</p>}
             </li>
           ))}
         </ul>
