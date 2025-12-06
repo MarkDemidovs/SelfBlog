@@ -4,4 +4,8 @@ const blogController = require("./blogController.js");
 
 router.get("/", blogController.getAllArticles);
 
+router.post("/", blogController.createArticle);
+
+router.delete("/:id", blogController.deleteArticle);
+
 module.exports = router;
