@@ -10,7 +10,14 @@ const addArticle = async ({ title, content }) => {
 
     return result.rows[0];
 }
+
+const removeArticle = async (id) => {
+    const result = await db.query(`DELETE FROM posts WHERE post_id = $1 RETURNING *`, [id]);
+    return result.rows[0];
+}
+
 module.exports = {
     fetchAllArticles,
-    addArticle
+    addArticle,
+    removeArticle
 }

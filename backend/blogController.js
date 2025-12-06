@@ -15,13 +15,20 @@ const createArticle = async (req, res) => {
     try {
         const newArticle = await blogModel.addArticle({ title, content });
         res.status(201).json({ article: newArticle });    
-    } catch (error) {
+    } catch (err) {
         res.status(500).json({ error: "Failed to create article! check asynchronous function createArticle::blogController.js !" });
     }
 }
 
 const deleteArticle = async (req, res) => {
-    console.log("wip");
+    const id = req.params.id;
+
+    try {
+        const deletedArticle = await blogModel.removeArticle(id);
+        res.status(200).json({ message: deletedArticle });
+    } catch (err) {
+        res.status(500).json({ error: "Failed to delete article" + err.message});
+    }
 }
 module.exports = {
     getAllArticles,
